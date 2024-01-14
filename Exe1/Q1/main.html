@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>
+            HTML1
+        </title>
+    </head>
+    <body>
+        <input id ="inputVal" type="number"/>
+        <button onclick="myCounter.Initialize()">Start</button>
+        <button onclick="myCounter.Increment()">+</button>
+        <button onclick="myCounter.Go()">Go</button>
+        <p id="pPrint"></p>
+
+    <script>
+        class Counter {
+            constructor(number) {
+                this.num = number;
+            }
+
+            get Num() { return this.num; } //property
+            set Num(value) {
+                this.num = value;
+            }
+
+           
+            Initialize() {
+                this.num = parseInt(document.getElementById("inputVal").value);
+                const myCounter = new Counter(this.num);
+                console.log(myCounter.num);
+            }
+
+            Increment() {
+                this.num++;
+                console.log(myCounter.num);
+            }
+
+            Go() {
+                let numbers='';
+                for (var i = 0; i <= this.num; i++) {
+                    numbers += i;
+                }
+                document.getElementById("pPrint").innerHTML=numbers;
+            }
+        }
+
+        const myCounter = new Counter(0);
+    </script>
+    </body>
+</html>

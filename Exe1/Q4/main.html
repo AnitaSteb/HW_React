@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>
+            HTML4
+        </title>
+    </head>
+    <body>
+        <h1>The Points Are: </h1>
+        <div id="ph"></div>
+        <h1>The calculate Route Length Is:</h1>
+        <h2 id="calc"></h2>
+        <script>
+            class Point {
+                constructor(x,y){
+                    this.x=x;
+                    this.y=y;
+                }
+
+                Show(){
+
+                    return "("+this.x+","+this.y+")";
+                }
+
+                Equals(p){
+                    return this.x===p.x && this.y===p.y;
+                }
+            }
+
+            const pointsArr=[];
+            pointsArr[0]=new Point(1,2);
+            pointsArr[1]=new Point(2,3);
+            pointsArr[2]=new Point(3,4);
+            pointsArr[3]=new Point(0,0);
+
+            function isXandYInArray(points, xValue, yValue){
+                //return true:xValue=2 yValue=3
+                //return false:xValue=7 yValue=7
+                var flag=false;
+                points.forEach(point => {
+                    if(point.x==xValue && point.y==yValue){
+                        flag=true;
+                    }
+                });
+                return flag;
+            }
+
+            function isPointInArray(points,point){
+                //return true:new Point(0,0)
+                //return false:new Point(1,0)
+                var flag=false;
+                points.find(element => {
+                    flag = element.Equals(point);
+                    if(flag){
+                        return flag;
+                    }
+                });
+                return flag;
+            }
+
+            function calculateRouteLength(points){
+                htmlStr="";
+                for(var i=0;i<points.length;i++){
+                    htmlStr+="<p>"+points[i].Show()+"</p>";
+                }
+                document.getElementById("ph").innerHTML = htmlStr;
+                var calc=0;
+                for (let i = 0; i < points.length; i++) {
+                    let firstXPoint=points[i].x;
+                    let firstYPoint=points[i].y;
+                    let secondXPoint=points[++i].x;
+                    let secondYPoint=points[i].y;
+                    let xDis= Math.pow((firstXPoint-secondXPoint),2);
+                    let yDis= Math.pow((firstYPoint-secondYPoint),2);
+                    calc+= (Math.sqrt(xDis+yDis));
+                }
+                document.getElementById("calc").innerHTML = calc;
+                return calc;
+            }
+            
+        </script>
+    </body>
+</html>  

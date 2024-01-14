@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>
+            HTML2
+        </title>
+    </head>
+    <body>
+        <form id="form">
+            <input id="duckName" placeholder="name">
+            <input id="duckColor" placeholder="color">
+            <input id="duckAge" placeholder="age" type="number">
+            <input id="duckWeight" placeholder="weight" type="number" >
+            <input id="duckPic" placeholder="pic" >
+            <button id="btn" type="submit" onclick="createDuck()">Submit</button>
+        </form>
+        <p id="pPrint"></p>
+        <button id="show" onclick="duck.Show()">Show</button>
+        <button id="quack" onclick="PlayQuack()">Quack</button>
+
+    <script>
+        window.onload=function(){
+            document.getElementById("show").style.display='none';
+            document.getElementById("quack").style.display='none';}
+
+        var flag=true;
+
+        class Duck{
+            constructor(name,color,age,weight,pic){
+                this.name=name;
+                this.color=color;
+                this.age=age;
+                this.weight=weight;
+                this.pic=pic;
+            }
+
+            Show(){
+                document.getElementById("pPrint").innerHTML='';
+                document.getElementById("pPrint").innerHTML=('Name: '+ this.name+ ','+ ' color: '+this.color+ ','+' age: '+this.age+ ',' +' weight: '+this.weight+ ','+ ' pic: '+this.pic+ '.');
+                flag=true;
+            }
+
+            Quack(){
+                //The var flag is declared in the script, the purpose is to make the alert work only 1 time
+                if (flag) {
+                    var quackNums=((parseInt(this.age)*parseInt(this.weight))/2);
+                    var q='Quack';
+                    // alert(q.repeat(quackNums))
+                    flag=false;
+                    document.getElementById("pPrint").innerHTML='';
+                    document.getElementById("pPrint").innerHTML=(q.repeat(quackNums));
+                }
+
+                const audio = new Audio("duck-quack-112941.mp3");
+                        audio.play();
+
+            }
+        }
+        function PlayQuack() {
+            duck.Quack();
+
+        for (var i = 1; i < 3; i++) {
+            setTimeout(function() {
+                duck.Quack();
+            }, i * 1000);
+        }
+    }
+
+        function createDuck(){
+            var duckName = document.getElementById('duckName').value;
+            var duckColor = document.getElementById('duckColor').value;
+            var duckAge = document.getElementById('duckAge').value;
+            var duckWeight = document.getElementById('duckWeight').value;
+            var duckPic = document.getElementById('duckPic').value;
+
+            duck = new Duck(duckName,duckColor,duckAge,duckWeight,duckPic);
+            console.log(duck);
+
+            document.getElementById('form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                document.getElementById("show").style.display='block';
+                document.getElementById("quack").style.display='block';
+                document.getElementById("btn").disabled =true;
+            });
+          
+        }
+    </script>
+    </body>
+</html>

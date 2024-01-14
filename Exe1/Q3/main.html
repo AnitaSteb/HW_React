@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>
+            HTML3
+        </title>
+    </head>
+    <body>
+        <form>
+            <input id="clockHour" placeholder="Hour">
+            <input id="clockMinute" placeholder="Minute">
+            <input id="clockSecond" placeholder="Second">
+            <input id="clockCountry" placeholder="Country">
+            <button id="btn" type="submit" onclick="createClock(); return false;">Submit</button>
+        </form>
+        <p id="pPrint"></p>
+
+        <script>
+            clocks=[];
+            class Clock{
+                constructor(hour,minute,second,country){
+                    this.hour=hour;
+                    this.minute=minute;
+                    this.second=second;
+                    this.country=country;
+                }
+
+                ConverToSeconds(){
+                    var culcSeconds= ((3600*this.hour)+(60*this.minute)+parseInt(this.second));
+                    return culcSeconds;
+                }
+
+                Show(){
+
+                }
+            }
+
+            function createClock(){
+                var clockHour = document.getElementById('clockHour').value;
+                var clockMinute = document.getElementById('clockMinute').value;
+                var clockSecond = document.getElementById('clockSecond').value;
+                var clockCountry = document.getElementById('clockCountry').value;
+
+                clock=new Clock(clockHour,clockMinute,clockSecond,clockCountry);
+                clocks.push(clock);
+                
+                if(clocks.length==1){
+                    var str = clocks.map(clock => `${clock.country}, ${clock.hour}:${clock.minute}:${clock.second}, ${clock.ConverToSeconds()}`).join('-----');
+                    document.getElementById("pPrint").innerHTML = str;
+                }
+                else{
+                    ids=['clockHour','clockMinute','clockSecond','clockCountry'];
+                    for (let i = 0; i < ids.length; i++) {
+                        document.getElementById(ids[i]).value='';
+                    }
+                }
+
+                
+            }
+        </script>
+    </body>
+</html>    
