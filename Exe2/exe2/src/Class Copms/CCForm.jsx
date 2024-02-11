@@ -29,7 +29,7 @@ import React, { Component } from 'react'
     }
     handleMouseOutScore = () => {
         const { score } = this.state;
-        if (score >= 555) {
+        if (score >= 555 && score<=800) {
           this.setState({ message: "You can be accepted for studies!" });
         } else {
           this.setState({ message: "Please try again next year." });

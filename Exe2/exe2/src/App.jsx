@@ -2,6 +2,7 @@ import './App.css'
 import CCColorDiv from './Class Copms/CCColorDiv'
 import CCForm from './Class Copms/CCForm'
 import CCTable from './Class Copms/CCTable'
+import CCTable2 from './Class Copms/CCTable2'
 
 function App() {
   
@@ -10,7 +11,7 @@ function App() {
       <div>
         <CCColorDiv/>
         <CCForm/>
-        <CCTable/>
+        <CCTable2/>
       </div>
     </>
   )
